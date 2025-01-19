@@ -3,8 +3,10 @@ import urllib.request as request
 import zipfile
 from src.ÖğrenciTahminleme import logger
 from src.ÖğrenciTahminleme.utils.common import get_size
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from pathlib import Path
 from src.ÖğrenciTahminleme.entity.config_entity import DataIngestionConfig
-
 
 class DataIngestion:
     def __init__(self,config: DataIngestionConfig): # config parametresi DataIngestionConfig icerisnde olusturulmus degiskenlerini ve tiplerini almasi saglaniyor
