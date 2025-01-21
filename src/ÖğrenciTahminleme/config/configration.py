@@ -25,6 +25,9 @@ class ConfigurationManager:
             source_URL=config.source_URL, #https://www.kaggle.com/api/v1/datasets/download/bhavikjikadara/student-study-performance
             local_data_file=config.local_data_file, # artifacts/data_ingestion/data.zip
             unzip_dir=config.unzip_dir, # artifacts/data_ingestion
+            raw_data_path = config.raw_data_path,
+            train_data_path= config.train_data_path,
+            test_data_path=config.test_data_path
         )
 
         return data_ingestion_config

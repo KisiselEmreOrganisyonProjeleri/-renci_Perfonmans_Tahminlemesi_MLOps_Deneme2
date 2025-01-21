@@ -20,3 +20,5 @@ class DataIngestionTrainingPipeline:
         # Zip dosyasını çıkar
         data_ingestion.extract_zip_file()
 
+        train_data, test_data = data_ingestion.initiate_data_ingestion()
+        return train_data, test_data

@@ -71,11 +71,11 @@ class DataTransfrom:
         except Exception as e:
             raise e
         
-    def initiate_data_transformation(self):
+    def initiate_data_transformation(self,train_path,test_path):
 
         try:
-            data = pd.read_csv(self.config.data_path)
-            train_df,test_df = train_test_split(data)
+            train_df=pd.read_csv(train_path)
+            test_df=pd.read_csv(test_path)
 
             logger.info("Read train and test data completed")
 
@@ -107,10 +107,8 @@ class DataTransfrom:
             logger.info(f"Saved preprocessing object.")
 
             save_object(
-
                 file_path=self.config.preprocessor_file,
                 obj=preprocessing_obj
-
             )
 
             return (

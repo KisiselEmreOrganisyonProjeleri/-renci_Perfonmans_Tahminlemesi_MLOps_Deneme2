@@ -16,7 +16,7 @@ class DataIngestion:
     
     def download_file(self):
         if not os.path.exists(self.config.local_data_file): # data.zip isimli bir dosya yoksa True Donecektir
-            filename, headers = request.urlretrieve( # filename degiskenin dosyanin ismi ataniyor headers degiskenine dosyanin bilgileri ataniyor
+            filename, headers = request.urlretrieve(
                 url = self.config.source_URL, # url parametre dosyanin hangi siteden indirilmesi gerektigini alir
                 filename = self.config.local_data_file # dosyayi hangi isimle locale indirmen gerektigini yazar
             )
@@ -36,3 +36,29 @@ class DataIngestion:
         os.makedirs(unzip_path, exist_ok=True)
         with zipfile.ZipFile(self.config.local_data_file, 'r') as zip_ref: # zip_ref adini verdigimiz bir degiskenle data.zipin icerini acip okuyoruz
             zip_ref.extractall(unzip_path) # extractall metoduyla dosyami zipten cikarip artifacts/data_ingestion bu klasor icerisine atiyorum
+
+    def initiate_data_ingestion(self):
+        logger.info('Data İngestion Sınıfına Girildi ve Çalışıldı')
+        try:
+            df=pd.read_csv(self.config.raw_data_path)
+            logger.info('Veri Seti Okundu')
+
+            os.makedirs(os.path.dirname(self.config.train_data_path)) # train_data nın klasörünü oluşturur
+
+            df.to_csv(self.config.raw_data_path, index=False,header = True) # Ham datayı csv formatında bir dosyaya dönüştürerek kaydeder
+
+            logger.info('Train Test Data Ayrımına Başlandı')
+            train_set, test_set = train_test_split(df, test_size = 0.2, random_state = 42)
+
+            train_set.to_csv(self.config.train_data_path, index = False, header = True)
+
+            test_set.to_csv(self.config.test_data_path, index = False, header = True)
+            
+            logger.info('Data ayırma işlemi başarıyla tamamlandı')
+
+            return (
+                self.config.train_data_path,
+                self.config.test_data_path
+            )
+        except Exception as e:
+            raise e
