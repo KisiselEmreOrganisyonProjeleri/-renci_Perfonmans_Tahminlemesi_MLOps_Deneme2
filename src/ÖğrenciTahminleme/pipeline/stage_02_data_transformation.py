@@ -8,15 +8,14 @@ class DataTransformationTrainingPipeline:
     def __init__(self):
         pass
 
-    def main(self):
+    def main(self, train_data, test_data):
         # Konfigürasyon yöneticisini oluştur
         config = ConfigurationManager()
-        # Veri alım konfigürasyonunu al
-        data_transformation_config = config.get_data_transformation_config
-        # DataIngestion sınıfını başlat
+        # Veri dönüşüm konfigürasyonunu al
+        data_transformation_config = config.get_data_transformation_config()
+        # DataTransformation sınıfını başlat
         data_transformation = DataTransfrom(config=data_transformation_config)
-        obj = DataIngestionTrainingPipeline()  # Pipeline nesnesini oluştur
-        train_data,test_data = obj.main()
-        train_arr,test_arr,_ = data_transformation.initiate_data_transformation(train_data, test_data)
+        # Veri dönüşümünü başlat
+        train_arr, test_arr, _ = data_transformation.initiate_data_transformation(train_data, test_data)
         return train_arr, test_arr
 

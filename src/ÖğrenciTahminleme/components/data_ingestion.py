@@ -43,7 +43,7 @@ class DataIngestion:
             df=pd.read_csv(self.config.raw_data_path)
             logger.info('Veri Seti Okundu')
 
-            os.makedirs(os.path.dirname(self.config.train_data_path)) # train_data nın klasörünü oluşturur
+            os.makedirs(os.path.dirname(self.config.train_data_path),exist_ok=True) # train_data nın klasörünü oluşturur
 
             df.to_csv(self.config.raw_data_path, index=False,header = True) # Ham datayı csv formatında bir dosyaya dönüştürerek kaydeder
 
