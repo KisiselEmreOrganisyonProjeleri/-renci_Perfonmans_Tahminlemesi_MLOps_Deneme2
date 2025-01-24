@@ -99,3 +99,14 @@ def evaluate_model(X_train,y_train,X_test,y_test,models,param):
 
     except Exception as e:
         raise e
+def load_object(file_path):
+    try:
+        if not os.path.exists(file_path):
+            raise FileNotFoundError(f"Dosya bulunamadı: {file_path}")
+        
+        print(f"Dosya yükleniyor: {file_path}")
+        with open(file_path, 'rb') as file_obj:
+            return pickle.load(file_obj)
+    except Exception as e:
+        print(f"Dosya yükleme hatası: {str(e)}")
+        raise e

@@ -22,4 +22,4 @@ class DataTransformConfig:
 class ModelTrainerConfig:
     root_dir: Path
     prep_data_path: Path
-    model_file: Path
+    model_path: Path

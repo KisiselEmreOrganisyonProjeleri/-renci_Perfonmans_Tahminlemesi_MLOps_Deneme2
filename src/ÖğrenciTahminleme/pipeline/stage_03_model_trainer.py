@@ -1,9 +1,7 @@
 from src.ÖğrenciTahminleme.config.configration import ConfigurationManager
 from src.ÖğrenciTahminleme.components.model_trainer import ModelTrainer
-from src.ÖğrenciTahminleme.components.data_transformation import DataTransfrom
 
 from src.ÖğrenciTahminleme import logger
-from src.ÖğrenciTahminleme.pipeline.stage_02_data_transformation import DataTransformationTrainingPipeline
 STAGE_NAME = "Model Trainer stage"  # Aşama ismi
 
 class ModelTrainerTrainingPipeline:

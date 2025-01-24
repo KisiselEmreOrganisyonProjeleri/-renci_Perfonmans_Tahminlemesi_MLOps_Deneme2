@@ -48,6 +48,6 @@ class ConfigurationManager:
         model_trainer_config = ModelTrainerConfig(
             root_dir = config.root_dir,
             prep_data_path = config.prep_data_path,
-            model_file = Path(config.model_path)
+            model_path = Path(config.model_path)
         )
         return model_trainer_config
